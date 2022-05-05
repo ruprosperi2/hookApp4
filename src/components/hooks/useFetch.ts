@@ -1,30 +1,41 @@
-import axios from "axios";
-import {useEffect, useState} from "react";
+import axios from "axios"
+import { useEffect, useRef, useState } from "react"
 
 const useFetch = (url: string) => {
-    const [state, setState] = useState({
-        data: null,
-        loading: true,
-        error: true
-    });
+  const [state, setState] = useState({
+    data: null,
+    loading: true,
+    error: true
+  })
 
-    useEffect(() => {
-        setState({
-            data: null,
-            loading: true,
-            error: true
-        })
-        axios.get(url)
-            .then(res => {
-                setState({
-                    data: res.data,
-                    loading: false,
-                    error: false
-                })
-            })
-    }, [url]);
+  let isMounted = useRef(true)
 
-    return state
+  useEffect(() => {
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
+
+
+  useEffect(() => {
+    setState({
+      data: null,
+      loading: true,
+      error: true
+    })
+    axios.get(url)
+      .then(res => {
+        if (isMounted.current) {
+          setState({
+            data: res.data,
+            loading: false,
+            error: false
+          })
+        }
+      })
+  }, [url])
+
+  return state
 
 }
 
