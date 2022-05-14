@@ -1,10 +1,15 @@
 import { describe, expect, test } from "vitest"
-import { shallow } from "enzyme"
+import { render } from "@testing-library/react"
 import App from "../App"
+
+// @ts-ignore
+globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+
 
 describe("Testing <App/>", () => {
   test("it should show correctly <App/> component", () => {
-    const wrapper = shallow(<App />)
-    expect(wrapper).toMatchSnapshot()
+    const { container } = render(<App />)
+    expect(container).toMatchSnapshot()
   })
+
 })

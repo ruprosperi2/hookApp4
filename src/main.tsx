@@ -1,18 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-// import SimpleForm from "./components/02-useEffect/SimpleForm";
-// import FormWithCustomHook from "./components/02-useEffect/FormWithCustomHook";
-// import MultipleCustomHooks from "./components/03-examples/MultipleCustomHooks";
-// import HookApp from "./HookApp";
-// import CounterApp from "./components/01-useState/CounterApp";
-// import CounterWithCustomHook from "./components/01-useState/CounterWithCustomHook";
-// import RealExampleRef from "./components/04-useRef/RealExampleRef"
-import Memorize from "./components/05-memos/Memorize"
+import React from "react"
+import ReactDOM from "react-dom/client"
+import "./index.css"
+import MainApp from "./components/07-useContext/MainApp"
+import { BrowserRouter } from "react-router-dom"
+import App from "./App"
 
-ReactDOM.render(
+const el = document.getElementById("root")!
+
+ReactDOM.createRoot(el).render(
   <React.StrictMode>
-    <Memorize/>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 )
