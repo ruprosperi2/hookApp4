@@ -32,7 +32,13 @@ const useFetch = (url: string) => {
             error: false
           })
         }
+      }).catch(()=>{
+      setState({
+        data: null,
+        loading: false,
+        error: true
       })
+    })
   }, [url])
 
   return state
