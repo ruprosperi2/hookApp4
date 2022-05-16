@@ -12,8 +12,6 @@ const useForm = (initialState = {}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        console.log(formValues)
     }
 
     return [formValues, handleInputChange, handleSubmit]
